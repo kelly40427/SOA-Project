@@ -2,11 +2,18 @@ import React from 'react';
 import './index.css'; // 導入 CSS
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Order from "./Order";
+import { useLocation } from 'react-router-dom';
 
 
 export function Home() {
+
+      //获取登录页面传来的userId
+      const location = useLocation();
+      const userId = location.state.userId;
+      console.log("登录用户ID",userId);
+      
     const navigate = useNavigate();
-    const userId = localStorage.getItem('userId'); 
+
     const handleClickButton=(event,id)=>{
         navigate("/order")
       }
