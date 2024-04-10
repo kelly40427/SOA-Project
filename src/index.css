@@ -1,13 +1,70 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+li {
+  background-color: #fff;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 600px) {
+  li {
+      padding: 1rem;
+  }
+}
+/* Add this to your CSS file */
+.btn {
+  display: inline-block;
+  background-color: #003580; /* 蓝色背景 */
+  color: #ffffff; /* 白色文本 */
+  padding: 10px 20px; /* 上下10px, 左右20px的内边距 */
+  margin: 10px 0; /* 上下外边距10px，左右0 */
+  text-align: center;
+  text-decoration: none; /* 去掉下划线 */
+  font-weight: bold; /* 加粗字体 */
+  border-radius: 5px; /* 圆角边框 */
+  transition: background-color 0.3s; /* 鼠标悬停时背景颜色变化的过渡效果 */
+}
+
+.btn:hover {
+  background-color: #002354; /* 鼠标悬停时更深的蓝色背景 */
 }
