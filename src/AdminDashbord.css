@@ -1,0 +1,67 @@
+/* AdminDashboard.css */
+
+.admin-dashboard {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .sidebar {
+    width: 250px; /* Fixed sidebar width */
+    background-color: #343a40; /* Dark gray/black background */
+    color: white; /* Text color */
+    display: flex;
+    flex-direction: column; /* Stack sidebar links vertically */
+    padding: 20px; /* Padding inside the sidebar */
+  }
+  
+  .sidebar a {
+    color: white; /* Sidebar link text color */
+    padding: 10px 15px; /* Spacing around link text */
+    text-decoration: none; /* Remove underline from links */
+    border-radius: 4px; /* Slightly rounded corners for links */
+    margin-bottom: 5px; /* Space between sidebar links */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .sidebar a:hover {
+    background-color: #495057; /* Slightly lighter gray for hover effect */
+  }
+  
+  .content {
+    flex-grow: 1; /* Take up the remaining space */
+    padding: 20px; /* Padding inside the content area */
+    background-color: #f8f9fa; /* Light gray background for content */
+    overflow-y: auto; /* Add scroll for content overflow */
+  }
+  
+  /* You may want to add media queries for responsiveness */
+  @media (max-width: 768px) {
+    .admin-dashboard {
+      flex-direction: column; /* Stack sidebar and content on top of each other on smaller screens */
+    }
+  
+    .sidebar {
+      width: 100%; /* Full width sidebar on smaller screens */
+    }
+  }
+  /* AdminDashboard.css */
+.logout-container {
+  margin-top: auto; /* Pushes the logout to the bottom if the sidebar uses flexbox */
+  padding-top: 20px;
+  border-top: 1px solid #ffffff50; /* Optional: adds a line above the logout button */
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 10px;
+  color: white;
+  background-color: #e74c3c; /* A red color for logout to indicate action */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background-color: #c0392b; /* Darker shade on hover */
+}

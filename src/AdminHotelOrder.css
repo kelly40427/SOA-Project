@@ -1,0 +1,72 @@
+.admin-hotel-order-container {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.admin-hotel-order-container h2 {
+    color: #333;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.admin-hotel-order-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #fff;
+}
+
+.admin-hotel-order-container th, 
+.admin-hotel-order-container td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.admin-hotel-order-container th {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.admin-hotel-order-container tr:hover {
+    background-color: #f9f9f9;
+}
+
+.admin-hotel-order-container input[type="text"],
+.admin-hotel-order-container input[type="date"],
+.admin-hotel-order-container input[type="number"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.admin-hotel-order-container button {
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.admin-hotel-order-container button:hover {
+    background-color: #2980b9;
+}
+
+.admin-hotel-order-container .edit-actions {
+    display: flex;
+    gap: 10px;
+  }
+

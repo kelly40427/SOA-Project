@@ -1,0 +1,39 @@
+.orderconfirm-container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.checkmark-image {
+    width: 50px;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+}

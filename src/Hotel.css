@@ -1,0 +1,144 @@
+.search-and-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center; /* Align items vertically */
+    justify-content: space-between;
+  }
+  
+  .search-and-filters > label {
+    flex: 1; /* 告訴 label 佔據可用空間的一部分 */
+    margin-bottom: 0; /* 清除 label 的底部 margin */
+  }
+  
+  .search-and-filters > label:first-child {
+    margin-right: 10px; /* 調整第一個 label 的右邊距 */
+  }
+  
+  .search-and-filters button {
+    margin-left: auto; /* 將按鈕推到右側 */
+  }
+  
+  .search-and-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center; /* Align items vertically */
+    justify-content: space-between;
+  }
+  
+  .search-and-filters input[type="text"],
+  .search-and-filters select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .search-and-filters button {
+    padding: 10px 15px;
+    background-color: #003580; /* Similar to the blue button in the image */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .search-and-filters button:hover {
+    background-color: #002c66; /* A slightly darker blue on hover */
+  }
+  
+  .hotel-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .hotel-item {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #fff;
+  }
+  
+  .hotel-name {
+    color: #003580;
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  
+  .roomtype {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 0.5em;
+  }
+  
+  .hotel-item .hotel-rating {
+    font-size: 1em;
+    color: #fff;
+    background-color: #ffc107; /* Gold/yellow background for the rating */
+    border-radius: 50%; /* Make it round */
+    padding: 0.3em 0.6em; /* Padding to create a badge look */
+    position: relative; /* To position it relative to its container */
+    top: -10px; /* Push it up a bit */
+    left: -10px; /* Push it left a bit */
+    display: inline-flex; /* Center the content */
+    align-items: center;
+    justify-content: center;
+    width: 1.5em;
+    height: 1.5em;
+    font-weight: bold;
+  }
+  
+  .room-price {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 1em;
+    font-weight: bold;
+  }
+  
+  .hotel-item button {
+    padding: 10px 15px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; /* Make the button full-width */
+  }
+  
+  .hotel-item button:hover {
+    background-color: #003580;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    align-items: center; /* Center the button vertically if needed */
+    padding: 20px; /* Add some padding around the container */
+  }
+  
+  .button-container .home-button {
+    padding: 10px 20px;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 15px 30px;
+    margin: 10px 0;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 250px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* No need to set the width as max-content anymore */
+    /* Remove the margin if it's no longer necessary */
+  }
+  
+  .button-container .home-button:hover {
+    background-color: #e2e2e2;
+  }

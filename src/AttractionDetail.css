@@ -1,0 +1,79 @@
+.attraction-detail-container {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .attraction-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  
+  .attraction-detail-header .attraction-name {
+    font-size: 2.5rem;
+    color: #003580;
+    margin: 0;
+  }
+  
+  .attraction-detail-header .attraction-rating {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #ffc107;
+    color: #333;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    border: 3px solid #fff;
+  }
+  
+  .attraction-info p {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+  }
+  
+  .attraction-description {
+    font-style: italic;
+  }
+  
+  .attraction-visit-date {
+    font-weight: bold;
+    color: #003580;
+  }
+  
+  .attraction-price {
+    font-size: 1.5rem;
+    color: #e45609;
+    font-weight: bold;
+  }
+  
+  .visit-button {
+    background-color: #e45609;
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .visit-button:hover {
+    background-color: #cc3d00;
+  }

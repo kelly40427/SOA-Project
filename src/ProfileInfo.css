@@ -1,0 +1,58 @@
+/* ProfileInfo.css */
+.profile-container {
+  max-width: 600px;
+  margin: 40px auto; /* Centers the card horizontally */
+  padding: 40px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-size: 1.2rem;
+  display: flex; /* Flex display to use flexbox for alignment */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center children horizontally */
+}
+
+.profile-container h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+  width: 100%; /* Ensures the header is full width within the container */
+}
+
+.user-info {
+  text-align: center; /* Center align the user information */
+  width: 100%; /* Full width to align text properly */
+}
+
+.user-info p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.user-info strong {
+  color: #333;
+  margin-right: 0.5rem;
+}
+
+.home-button {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 15px 30px;
+  margin: 10px 0;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 250px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.home-button:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.home-button:active {
+  transform: translateY(1px);
+}

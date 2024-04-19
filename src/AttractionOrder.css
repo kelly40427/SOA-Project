@@ -1,0 +1,74 @@
+
+.order-list {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0 20px; /* Add padding to the container */
+}
+
+.order-item {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 10px; /* Only bottom margin for space between items */
+    width: 80%; /* Full width of the container */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+  
+  .order-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .attraction-name {
+    color: #333;
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  
+  .order-date, .order-status{
+    color: #666;
+    font-size: 18px;
+    margin: 5px 0;
+  }
+
+    .order-price {
+    color: #333;
+    font-size: 20px;
+    margin: 5px 0;
+    font-weight: bold; 
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #333;
+    width: 100%; /* Ensures the header is full width within the container */
+  }
+  
+  .home-button {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 15px 30px;
+    margin: 10px 0;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 250px; /* 按钮宽度 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .home-button:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .home-button:active {
+    transform: translateY(1px);
+  }

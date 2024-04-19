@@ -1,0 +1,94 @@
+.admin-user-container {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+  }
+  
+  .admin-user-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .admin-user-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .admin-user-container table th,
+  .admin-user-container table td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .admin-user-container table th {
+    background-color: #f8f8f8;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .admin-user-container table tr:hover {
+    background-color: #f4f4f4;
+  }
+  
+  .admin-user-container button {
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .admin-user-container button:hover {
+    background-color: #2980b9;
+  }
+  
+  .admin-user-container button:last-child {
+    margin-right: 0;
+  }
+  
+  .admin-user-container form {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-user-container form input[type="text"],
+  .admin-user-container form input[type="email"],
+  .admin-user-container form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .admin-user-container form button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #27ae60;
+    color: white;
+    margin-top: 10px;
+  }
+  
+  .admin-user-container form button:hover {
+    background-color: #2ecc71;
+  }
+  
+  .admin-user-container form button.cancel {
+    background-color: #95a5a6;
+  }
+  
+  .admin-user-container form button.cancel:hover {
+    background-color: #7f8c8d;
+  }
