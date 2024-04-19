@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import { Navigate, Route, Routes, Switch } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import Home from './Home';
@@ -50,7 +50,6 @@ function App() {
         <Route path="/*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
- 
   );
 }
 

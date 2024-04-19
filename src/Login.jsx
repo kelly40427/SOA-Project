@@ -33,10 +33,6 @@ export function Login() {
           console.error("Login failed:", response.data.message);
           // Optionally show an error message to the user here
         }
-      })
-      .catch((error) => {
-        console.error("Error during login request:", error);
-        // Optionally show an error message to the user here
       });
     };
 
@@ -76,5 +72,3 @@ export function Login() {
         </div>
       );
 }
-
-export default Login
