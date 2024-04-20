@@ -18,15 +18,17 @@ export function Attraction() {
   const [selectedPriceRange, setSelectedPriceRange] = React.useState('');
   const [selectedCity, setSelectedCity] = React.useState('');
   const [attractionId, setAttractionId]=React.useState('');
+  const [ticketsAvailable, setTicketsAvailable] =React.useState('');
   const CityOptions = ['Hengelo', 'Enschede', 'Amsterdam', 'Den Haag'];
-  const priceRangeOptions = ['0-100', '100-200', '200-300', '300+'];
+  const priceRangeOptions = ['0-10', '10-20', '20-30','40-50', '50+'];
+  console.log('All attractions:', filteredAttractions);
     // Mock data for attractions
     const attractionsData = [
-      { id: 1, city: 'New York', name: 'Central Park',city:'Hengelo',rating:5, description: 'A large public park in New York City.', price: 0, rating: 5 },
-      { id: 2, city: 'Paris', name: 'Eiffel Tower',city:'enschede',rating:4.5, description: 'An iconic iron tower in Paris.', price: 125, rating: 5 },
-      { id: 3, city: 'Rome', name: 'Colosseum',city:'Hengelo',rating:3.7, description: 'A historical amphitheater in Rome.', price: 220, rating: 4 },
-      { id: 4, city: 'Agra', name: 'Taj Mahal',city:'enschede',rating:4.9, description: 'A historic white marble mausoleum in Agra.', price: 215, rating: 5 },
-      { id: 5, city: 'London', name: 'London Eye',city:'enschede',rating:4.8, description: 'A giant Ferris wheel on the South Bank of the River Thames in London.', price: 530, rating: 4 }
+      { attraction_id: 1,tickets_available: 990, name: 'Central Park',city:'Hengelo', description: 'A large public park in New York City.', price: 10, rating: 5 },
+      { attraction_id: 2,tickets_available: 35, name: 'Eiffel Tower',city:'Enschede',description: 'An iconic iron tower in Paris.', price: 15, rating: 5 },
+      { attraction_id: 3,tickets_available: 10,name: 'Colosseum',city:'Hengelo',description: 'A historical amphitheater in Rome.', price: 20, rating: 4 },
+      { attraction_id: 4,tickets_available: 37, name: 'Taj Mahal',city:'Enschede', description: 'A historic white marble mausoleum in Agra.', price: 35, rating: 5 },
+      { attraction_id: 5,tickets_available: 220,name: 'London Eye',city:'Enschede', description: 'A giant Ferris wheel on the South Bank of the River Thames in London.', price: 50, rating: 4 }
   ];
   React.useEffect(() => {
     setAttractions(attractionsData);
@@ -35,13 +37,13 @@ export function Attraction() {
 }, []);
 
   // React.useEffect(()=>{
-  //   axios.get(`http://localhost:8080/user/attraction?`).
+  //   axios.get(`http://localhost:8080/user/attraction`).
   //   then((response)=> {
   //     console.log(response.data);
   //     if(response.data.code==0){
-  //       setAttractions(response.data.data.attractions);
-  //       setFilteredAttractions(response.data.data.attractions);
-  //       setAttractionId(response.data.data.id);
+  //       setAttractions(response.data.data);
+  //       setFilteredAttractions(response.data.data);
+  //       setAttractionId(response.data.data.attraction_id);
   //     }
   //     else{
   //       console.log('No information found')
@@ -74,16 +76,28 @@ const handleSearch = () => {
 };
 
 const handleViewAttraction = (attraction) => {
-  // Prepare data to send or use in navigation
-  const dataToSend = {
+    // Log the data you're sending
+    const stateToSend ={
       userId: userId,
-      attractionId: attraction.id,
+      attractionId: attraction.attraction_id,
       attractionName: attraction.name,
-      city: attraction.selectCity,
-      visitDate: choosedDate.toISOString().split('T')[0], // Format the date as YYYY-MM-DD
+      visitDate: choosedDate.toISOString().split('T')[0],
       price: attraction.price,
-  };
-  console.log(attraction.id);
+      description: attraction.description,
+      ticketsAvailable: attraction.tickets_available, // Make sure this attribute exists
+    };
+    navigate(`/attraction-detail`, { state: stateToSend });
+  // Prepare data to send or use in navigation
+  // const dataToSend = {
+  //     userId: userId,
+  //     attractionId: attraction.attraction_id,
+  //     attractionName: attraction.name,
+  //     city: attraction.selectCity,
+  //     visitDate: choosedDate.toISOString().split('T')[0], // Format the date as YYYY-MM-DD
+  //     price: attraction.price,
+  //     ticketsAvailable: attraction.tickets_available,
+  // };
+  // console.log(attraction.id);
 
   // You could use axios to post data if required, e.g., booking a visit
   // axios.post('http://your-backend-url/api/attraction-visits', dataToSend)
@@ -94,16 +108,6 @@ const handleViewAttraction = (attraction) => {
   //     console.log('Error sending data to the backend:', error);
   // });
 
-  navigate(`/attraction-detail`, {
-      state: {
-          userId: userId,
-          attractionId: attraction.id,
-          attractionName: attraction.name,
-          visitDate: choosedDate.toISOString().split('T')[0],
-          price: attraction.price,
-          description: attraction.description,
-      }
-  });
 };
   return (
     <div className="attraction-page-container">
@@ -142,10 +146,11 @@ const handleViewAttraction = (attraction) => {
 
     <div className="attraction-list">
         {filteredAttractions.map(attraction => (
-            <div className="attraction-item" key={attraction.id}>
+            <div className="attraction-item" key={attraction.attraction_id}>
                 <h3 className='attraction-name'>{attraction.name}</h3>
                 <p className='attraction-rating'>{attraction.rating}</p>
                 <p className='attraction-price'>Price: €{attraction.price}</p>
+                <p className='attraction-tickets'>Tickets Available: {attraction.tickets_available}</p>
                 <button onClick={() => handleViewAttraction(attraction)}>
                     View Details
                 </button>

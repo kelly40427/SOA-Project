@@ -2,35 +2,27 @@ import * as React from 'react';
 import axios from 'axios';
 import './AdminHotelOrder.css';
 function EditableRow({ order, editFormData, handleEditChange, handleEditSubmit, setEditingOrder }) {
+
     return (
       <tr>
-        <td>{order.id}</td>
+        <td>{editFormData.order_id}</td>
         <td>
-          <input type="text" required name="hotelName" value={editFormData.hotelName} onChange={handleEditChange} />
+        <input type="number" required name="user_id" value={editFormData.user_id} onChange={handleEditChange} readOnly />
         </td>
         <td>
-          <select name="roomType" value={editFormData.roomType} onChange={handleEditChange}>
-            <option value="single">Single</option>
-            <option value="double">Double</option>
-            <option value="suite">Suite</option>
-            <option value="deluxe">Deluxe</option>
-          </select>
-        </td>
-        {/* Include other fields similarly */}
-        <td>
-        <input type="date" required name="checkIn" value={editFormData.checkIn} onChange={handleEditChange}/>
+        <input type="date" required name="checkIn" value={editFormData.check_in} onChange={handleEditChange}/>
         </td>
         <td>
-          <input type="date" required name="checkOut" value={editFormData.checkOut} onChange={handleEditChange}/>
+          <input type="date" required name="checkOut" value={editFormData.check_out} onChange={handleEditChange}/>
         </td>
         <td>
-          <input type="text" required name="lengthOfStay" value={editFormData.lengthOfStay} onChange={handleEditChange} />
+      <input type="number" required name="room_id" value={editFormData.room_id} onChange={handleEditChange} />
         </td>
         <td>
-          <select name="status" value={editFormData.status} onChange={handleEditChange}>
-            <option value="pending">Pending</option>
-            <option value="confirmed">Confirmed</option>
-            <option value="cancelled">Cancelled</option>
+          <select name="status" value={editFormData.order_status} onChange={handleEditChange}>
+            <option value="pending">1</option>
+            <option value="confirmed">2</option>
+            <option value="cancelled">3</option>
           </select>
         </td>
         <td>
@@ -47,13 +39,12 @@ function EditableRow({ order, editFormData, handleEditChange, handleEditSubmit, 
   function ReadOnlyRow({ order, startEdit, deleteOrder }) {
     return (
       <tr>
-        <td>{order.id}</td>
-        <td>{order.hotelName}</td>
-        <td>{order.roomType}</td>
-        <td>{order.checkIn}</td>
-        <td>{order.checkOut}</td>
-        <td>{order.lengthOfStay}</td>
-        <td>{order.status}</td>
+        <td>{order.order_id}</td>
+        <td>{order.user_id}</td>
+        <td>{order.check_in}</td>
+        <td>{order.check_out}</td>
+        <td>{order.room_id}</td>
+        <td>{order.order_status}</td>
         <td>{order.price}</td>
         {/* Include other fields similarly */}
         <td>
@@ -66,38 +57,50 @@ function EditableRow({ order, editFormData, handleEditChange, handleEditSubmit, 
 
 export function AdminHotelOrder() {
     // const [orders, setOrders] = React.useState([]);
-    const [editingOrder, setEditingOrder] = React.useState(null);
+  const [editingOrder, setEditingOrder] = React.useState(null);
   const [editFormData, setEditFormData] = React.useState({
-    hotelName: '',
+    orderId: '',
     roomType: '',
+    roomId: '',
     checkIn: '',
     checkOut: '',
-    lengthOfStay: '',
     status: '',
     price: '',
   });
   const [orders, setOrders] = React.useState([
     {
-      id: 1,
-      hotelName: 'Grand Plaza',
-      roomType: 'Deluxe',
-      checkIn: '2024-04-20',
-      checkOut: '2024-04-25',
-      lengthOfStay: 5,
-      status: 'confirmed',
-      price: '499.99',
+      "order_id": 1,
+      "user_id": 101,
+      "price": 499.99,
+      "order_status": 1,
+      "created_at": "2024-04-10 08:00:00",
+      "updated_at": "2024-04-15 10:30:00",
+      "room_id": 201,
+      "check_in": "2024-04-20",
+      "check_out": "2024-04-25"
     },
     {
-      id: 2,
-      hotelName: 'Ocean View',
-      roomType: 'Single',
-      checkIn: '2024-05-15',
-      checkOut: '2024-05-20',
-      lengthOfStay: 5,
-      status: 'pending',
-      price: '899.99',
+      "order_id": 2,
+      "user_id": 102,
+      "price": 899.99,
+      "order_status": 1,
+      "created_at": "2024-04-12 09:15:00",
+      "updated_at": "2024-04-15 11:45:00",
+      "room_id": 202,
+      "check_in": "2024-05-15",
+      "check_out": "2024-05-20"
     },
-    // Add more orders as needed
+    {
+      "order_id": 3,
+      "user_id": 103,
+      "price": 699.99,
+      "order_status": 2,
+      "created_at": "2024-04-14 10:30:00",
+      "updated_at": "2024-04-16 12:00:00",
+      "room_id": 203,
+      "check_in": "2024-06-01",
+      "check_out": "2024-06-05"
+    }
   ]);
      // React.useEffect(() =>{
     //     axios.get(`http://localhost:8080/hotel-order`).
@@ -111,18 +114,18 @@ export function AdminHotelOrder() {
     //         }
     //       })
     // },[]);
-const startEdit = (order) => {
-    setEditingOrder(order.id);
-    setEditFormData({
-      hotelName: order.hotelName,
-      roomType: order.roomType,
-      checkIn: order.checkIn,
-      checkOut: order.checkOut,
-      lengthOfStay: order.lengthOfStay,
-      status: order.status,
-      price: order.price,
-    });
-  };
+    const startEdit = (order) => {
+      setEditingOrder(order.order_id);
+      setEditFormData({
+        order_id: order.order_id,
+        user_id: order.user_id.toString(),
+        room_id: order.room_id.toString(),
+        check_in: order.check_in,
+        check_out: order.check_out,
+        order_status: order.order_status,
+        price: order.price.toString(),
+      });
+    };
 
   const handleEditChange = (event) => {
     const { name, value } = event.target;
@@ -132,14 +135,16 @@ const startEdit = (order) => {
   const handleEditSubmit = async (event) => {
     event.preventDefault();
     const updatedOrder = {
-      id: editingOrder,
       ...editFormData,
+      user_id: parseInt(editFormData.user_id),
+      room_id: parseInt(editFormData.room_id),
+      price: parseFloat(editFormData.price),
     };
 
     try {
-      const response = await axios.put(`http://your-backend-url/api/hotel-orders/${editingOrder}`, updatedOrder);
+      const response = await axios.put(`http://your-backend-url/api/hotel-orders/${editFormData.order_id}`, updatedOrder);
       const newOrders = orders.map((order) => {
-        if (order.id === editingOrder) {
+        if (order.order_id === editFormData.order_id) {
           return response.data;
         }
         return order;
@@ -154,11 +159,12 @@ const startEdit = (order) => {
   const deleteOrder = async (orderId) => {
     try {
       await axios.delete(`http://your-backend-url/api/hotel-orders/${orderId}`);
-      setOrders(orders.filter((order) => order.id !== orderId));
+      setOrders(orders.filter((order) => order.order_id !== orderId));
     } catch (error) {
       console.error('Failed to delete order', error);
     }
   };
+
   return (
     <div className='admin-hotel-order-container'>
       <h2>Hotel Orders</h2>
@@ -167,36 +173,35 @@ const startEdit = (order) => {
           <thead>
             <tr>
               <th>Order ID</th>
-              <th>Hotel Name</th>
-              <th>Room Type</th>
+              <th>User ID</th> {/* Updated from Hotel Name */}
+              <th>Room ID</th> {/* Updated from Room Type */}
               <th>Check-In</th>
               <th>Check-Out</th>
-              <th>Length of Stay</th>
-              <th>Status</th>
+              <th>Status</th> {/* Removed Length of Stay */}
               <th>Price</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-                        {orders.map((order) => (
-                            editingOrder === order.id ?
-                                <EditableRow
-                                    key={order.id}
-                                    order={order}
-                                    editFormData={editFormData}
-                                    handleEditChange={handleEditChange}
-                                    handleEditSubmit={handleEditSubmit}
-                                    setEditingOrder={setEditingOrder}  // Here is the passed function
-                                />
-                                :
-                                <ReadOnlyRow
-                                    key={order.id}
-                                    order={order}
-                                    startEdit={startEdit}
-                                    deleteOrder={deleteOrder}
-                                />
-                        ))}
-                    </tbody>
+            {orders.map((order) => (
+              editingOrder === order.order_id ? // Use order_id to check if editing
+                <EditableRow
+                  key={order.order_id} // Correct key to order_id
+                  order={order}
+                  editFormData={editFormData}
+                  handleEditChange={handleEditChange}
+                  handleEditSubmit={() => handleEditSubmit(order.order_id)} // Pass the order_id for submission
+                  setEditingOrder={setEditingOrder}
+                />
+                :
+                <ReadOnlyRow
+                  key={order.order_id} // Correct key to order_id
+                  order={order}
+                  startEdit={() => startEdit(order)} // Pass the entire order to start editing
+                  deleteOrder={() => deleteOrder(order.order_id)} // Pass the order_id to delete the order
+                />
+            ))}
+          </tbody>
         </table>
       </form>
     </div>

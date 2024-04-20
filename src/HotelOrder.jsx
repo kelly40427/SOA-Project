@@ -12,7 +12,17 @@ export function HotelOrder() {
 
   const navigate = useNavigate();
   const [orders, setOrders] = React.useState([]);
-
+  
+  const getOrderStatus = (status) => {
+    switch (status) {
+      case 1:
+        return 'Reserved';
+      case 2:
+        return 'Complete';
+      default:
+        return 'Unknown';
+    }
+  };
   // React.useEffect(()=>{
   //   axios.get(`http://localhost:8080/user/hotel-order?userId=${userId}`).
   //   then((response)=> {
@@ -26,12 +36,39 @@ export function HotelOrder() {
   //   })
   // }, [userId]);
 
+  // React.useEffect(() => {
+  //   // Replace this URL with the actual endpoint of your backend service.
+  //   const fetchOrders = async () => {
+  //     try {
+  //       const response = await axios.get(`http://localhost:8080/user/hotel-order?userId=${userId}`);
+  //       if (response.data.code === 0) {
+  //         const ordersWithHotelName = await Promise.all(
+  //           response.data.data.map(async (order) => {
+  //             // Fetch the hotel name for each order
+  //             const hotelResponse = await axios.get(`http://localhost:8080/hotel/${order.hotel_id}`);
+  //             return {
+  //               ...order,
+  //               hotelName: hotelResponse.data.data.name, // Assume the hotel name is in the response
+  //             };
+  //           })
+  //         );
+  //         setOrders(ordersWithHotelName);
+  //       } else {
+  //         console.log('No information found');
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching orders:', error);
+  //     }
+  //   };
+  
+  //   fetchOrders();
+  // }, [userId]);
+
   React.useEffect(() => {
     // 假設這些數據從後端接收
     const fakeData = [
-      { orderId: '1', name: 'Hotel Ocean View', checkIn: '2024-04-20', checkOut: '2024-04-25', orderStatus: 'Confirmed', price: 120 },
-      { orderId: '2', name: 'Mountain Resort Villa', checkIn: '2024-05-15', checkOut: '2024-05-20', orderStatus: 'Pending', price: 350 },
-      { orderId: '3', name: 'City Center Hotel', checkIn: '2024-06-01', checkOut: '2024-06-03', orderStatus: 'Cancelled', price: 90 }
+      { order_id: 1, user_id: 1, room_id: 1, price: 90, order_status: 1, check_in: '2024-04-20', check_out: '2024-04-25' },
+      // ... add other orders
     ];
 
     // 模擬異步操作
@@ -47,9 +84,10 @@ export function HotelOrder() {
     {orders.map((order) => (
         <div key={order.orderId} className="order-item">
             <div className="order-details">
-                <h3 className="hotel-name">{order.name}</h3>
-                <p className="order-date">Check-in: {order.checkIn} - Check-out: {order.checkOut}</p>
-                <p className="order-status">Status: {order.orderStatus}</p>
+                <h4 className="order-id">Order ID: {order.order_id}</h4>
+                <p className="hotel-name">Hotel: {order.hotelName}</p>
+                <p className="order-date">Check-in: {order.check_in} - Check-out: {order.check_out}</p>
+                <p className="order-status">Status: {getOrderStatus(order.order_status)}</p>
                 <p className="order-price">Price: €{order.price}</p>
             </div>
         </div>

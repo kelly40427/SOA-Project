@@ -14,9 +14,9 @@ export function AdminUser() {
     React.useEffect(() => {
         // Mock data
         const mockUsers = [
-            { id: 1, username: 'Alice', email: 'alice@example.com', role: 'admin' },
-            { id: 2, username: 'Bob', email: 'bob@example.com', role: 'user' },
-            { id: 3, username: 'Charlie', email: 'charlie@example.com', role: 'user' },
+            { user_id: 1, name: 'Alice', email: 'alice@example.com', role: 'admin' },
+            { user_id: 2, name: 'Bob', email: 'bob@example.com', role: 'user' },
+            { user_id: 3, name: 'Charlie', email: 'charlie@example.com', role: 'user' },
         ];
         setUsers(mockUsers);
     }, []);
@@ -37,7 +37,7 @@ export function AdminUser() {
     const startEdit = (user) => {
         setEditingUser(user);
         setEditFormData({
-          username: user.username,
+          username: user.name,
           email: user.email,
           role: user.role,
         });
@@ -56,8 +56,8 @@ export function AdminUser() {
         };
             // Update user on your API
     try {
-        const response = await axios.put(`/api/users/${editingUser.id}`, updatedUser);
-        setUsers(users.map((user) => (user.id === editingUser.id ? response.data : user)));
+        const response = await axios.put(`/api/users/${editingUser.user_id}`, updatedUser);
+        setUsers(users.map((user) => (user.user_id === editingUser.user_id ? response.data : user)));
         setEditingUser(null);
       } catch (error) {
         console.error('Failed to update user', error);
@@ -68,7 +68,7 @@ export function AdminUser() {
       // Delete user from your API
       try {
         await axios.delete(`/api/users/${userId}`);
-        setUsers(users.filter((user) => user.id !== userId));
+        setUsers(users.filter((user) => user.user_id !== userId));
       } catch (error) {
         console.error('Failed to delete user', error);
       }
@@ -79,6 +79,7 @@ export function AdminUser() {
       <table>
         <thead>
           <tr>
+            <th>id</th>
             <th>Username</th>
             <th>Email</th>
             <th>Role</th>
@@ -87,13 +88,14 @@ export function AdminUser() {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.username}</td>
+            <tr key={user.user_id}>
+              <td>{user.user_id}</td>
+              <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
                 <button onClick={() => startEdit(user)}>Edit</button>
-                <button onClick={() => deleteUser(user.id)}>Delete</button>
+                <button onClick={() => deleteUser(user.user_id)}>Delete</button>
               </td>
             </tr>
           ))}
@@ -104,7 +106,7 @@ export function AdminUser() {
         <form onSubmit={handleEditSubmit}>
           <input
             type="text"
-            name="username"
+            name="name"
             value={editFormData.username}
             onChange={handleEditChange}
           />

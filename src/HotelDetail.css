@@ -1,80 +1,59 @@
 .hotel-detail-container {
-  font-family: 'Arial', sans-serif;
-  color: #333;
+  font-family: Arial, sans-serif;
   max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .hotel-detail-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.hotel-detail-header .hotel-name {
-  font-size: 2.5rem;
-  color: #003580;
+.hotel-name {
   margin: 0;
 }
 
-.hotel-detail-header .hotel-rating {
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;;
-  height: 40px;;
+.hotel-rating {
   background-color: #ffc107;
-  color: #333;
   border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
-  font-weight: bold; /* Make the number bold */
-
-  border: 3px solid #fff; /* White border to create separation from background */
-}
-
-.hotel-info p {
-  margin: 0.5rem 0;
-  line-height: 1.6;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 1rem;
-}
-
-.hotel-description, .hotel-room-description {
-  font-style: italic;
-}
-
-.hotel-check-in-out {
+  padding: 5px 10px;
   font-weight: bold;
-  color: #003580;
+  color: white;
+  display: inline-block;
+  margin-left: 10px;
 }
 
-.hotel-price {
-  font-size: 1.5rem;
-  color: #e45609;
-  font-weight: bold;
+.hotel-info p, .room-item p {
+  margin: 5px 0;
 }
 
-.book-button {
-  background-color: #e45609;
-  color: #fff;
+.rooms-list {
+  margin-top: 20px;
+}
+
+.room-item {
+  padding: 15px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.room-item button {
+  padding: 10px 15px;
+  background-color: #0056b3;
+  color: white;
   border: none;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background 0.2s ease-in-out;
-  margin-top: 1rem;
-  display: block;
-  width: 100%;
-  text-align: center;
+  transition: background-color 0.3s;
+  width: 100%; /* Make the button full-width */
 }
 
-.book-button:hover {
-  background-color: #cc3d00;
+.room-item button:hover {
+  background-color: #003580;
 }

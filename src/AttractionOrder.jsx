@@ -13,6 +13,52 @@ export function AttractionOrder() {
     const navigate = useNavigate();
     const [orders, setOrders] = React.useState([]);
 
+    const getOrderStatus = (status) => {
+      switch (status) {
+        case 1:
+          return 'Reserved';
+        case 2:
+          return 'Complete';
+        default:
+          return 'Unknown';
+      }
+    };
+    React.useEffect(() => {
+      const fetchOrdersAndAttractions = async () => {
+        try {
+          // Fetch the user's orders
+          const orderResponse = await axios.get(`http://localhost:8080/user/attraction-order?userId=${userId}`);
+          if (orderResponse.data.code === 0) {
+            const orders = orderResponse.data.data;
+            
+            // Fetch the attraction names for all the orders
+            const attractionIds = orders.map(o => o.attraction_id);
+            const attractionResponse = await axios.get(`http://localhost:8080/attractions?ids=${attractionIds.join(',')}`);
+            
+            if (attractionResponse.data.code === 0) {
+              // Transform array of attractions to a map for easy access
+              const attractionMap = attractionResponse.data.data.reduce((map, attraction) => {
+                map[attraction.attraction_id] = attraction.name;
+                return map;
+              }, {});
+    
+              // Map over orders to include attraction names
+              const ordersWithAttractionNames = orders.map(order => ({
+                ...order,
+                attractionName: attractionMap[order.attraction_id],
+              }));
+    
+              setOrders(ordersWithAttractionNames);
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching orders or attractions:', error);
+        }
+      };
+    
+      fetchOrdersAndAttractions();
+    }, [userId]);
+
     // React.useEffect(()=>{
   //   axios.get(`http://localhost:8080/user/attraction-order?userId=${userId}`).
   //   then((response)=> {
@@ -48,9 +94,10 @@ export function AttractionOrder() {
     {orders.map((order) => (
         <div key={order.orderId} className="order-item">
             <div className="order-details">
-                <h3 className="attraction-name">{order.name}</h3>
-                <p className="order-date">Date: {order.date}</p>
-                <p className="order-status">Status: {order.orderStatus}</p>
+                <h3 className="order-id">Order ID: {order.order_id}</h3>
+                <h3 className="attraction-name">Attraction: {order.attractionName}</h3>
+                <p className="order-date">Date: {order.visit_date}</p>
+                <p className="order-status">Status: {getOrderStatus(order.order_status)}</p>
                 <p className="order-price">Price: €{order.price}</p>
             </div>
         </div>

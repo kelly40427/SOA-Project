@@ -14,10 +14,9 @@ function HotelConfirmation() {
   const checkInDate = location.state.checkInDate;
   const checkOutDate = location.state.checkOutDate;
   const lengthOfStay = location.state.lengthOfStay;
-  const price = location.state.price;
-  const roomType = location.state.roomtype;
+  const roomType = location.state.roomType;
   const totalPrice = location.state.totalPrice;
-  console.log('User ID:',userId, 'Order ID:',orderId)
+  console.log('User ID:',userId, 'Order ID:',orderId,)
 
   // State hooks for form inputs
   const [name, setName] = React.useState('');
@@ -27,11 +26,11 @@ function HotelConfirmation() {
   const handleConfirmBooking = async () => {
     // Construct the order data
     const orderData = {
-      orderId: orderId, // This would be assigned by the backend when creating the order
+      order_id: orderId, // This would be assigned by the backend when creating the order
       // userId: userId,
       // hotelId: hotelId,
       // price: totalPrice,
-      orderStatus: 1, // Assuming 1 is the status code for "reserved"
+      order_status: 2, // Assuming 1 is the status code for "reserved"
       // roomId: roomId,
       // checkIn: checkInDate,
       // checkOut: checkOutDate,
@@ -43,7 +42,7 @@ function HotelConfirmation() {
     //   // Send a POST request to your backend endpoint to create the booking
     //   const response = await axios.patch('http://your-backend-url/api/orders/${orderId}', orderData);
     //   // Redirect to a confirmation page, passing along the orderId from the response
-    //   navigate('/order-confirmation', { state: { orderId: response.data.orderId } });
+    //   navigate('/order-confirmation', { state: { orderId: response.data.data.order_id } });
     // } catch (error) {
     //   console.error('Error confirming booking:', error);
     // }

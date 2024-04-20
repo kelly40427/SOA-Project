@@ -5,6 +5,7 @@ import './AttractionDetail.css';
 
 export function AttractionDetail() {
     const location = useLocation();
+    console.log(location.state);
     const userId = location.state.userId;
     const attractionId = location.state.attractionId;
     const visitDate = location.state.visitDate;
@@ -17,22 +18,22 @@ export function AttractionDetail() {
     const [price, setPrice]=React.useState('');
     const [rating, setRating]=React.useState('');
     const [AttractionDescription, setAttractionDescription]=React.useState('');
+    const [ticket_available, setTickectAvailable]=React.useState('');
 
     const navigate = useNavigate(); 
 
     const attractionsData = [
-        { id: 1, city: 'New York', name: 'Central Park',city:'Hengelo',rating:5,address:'123 street, Hengelo',phone:'031723903', description: 'A large public park in New York City.', price: 0, rating: 5 },
-        { id: 2, city: 'Paris', name: 'Eiffel Tower',city:'enschede',rating:4.5,address:'109 street, Enschede',phone:'038476289', description: 'An iconic iron tower in Paris.', price: 125, rating: 5 },
-        { id: 3, city: 'Rome', name: 'Colosseum',city:'Hengelo',rating:3.7,address:'447 street, Hengelo',phone:'568493099', description: 'A historical amphitheater in Rome.', price: 220, rating: 4 },
-        { id: 4, city: 'Agra', name: 'Taj Mahal',city:'enschede',rating:4.9,address:'318 street, Enschede',phone:'049567888', description: 'A historic white marble mausoleum in Agra.', price: 215, rating: 5 },
-        { id: 5, city: 'London', name: 'London Eye',city:'enschede',rating:4.8,address:'154 street, Enschede',phone:'014898789', description: 'A giant Ferris wheel on the South Bank of the River Thames in London.', price: 530, rating: 4 }
+        { attraction_id: 1,tickets_available: 990,phone:'12321412412', name: 'Central Park',city:'Hengelo', description: 'A large public park in New York City.', price: 10, rating: 5 },
+        { attraction_id: 2,tickets_available: 35,phone:'123werfead', name: 'Eiffel Tower',city:'Enschede',description: 'An iconic iron tower in Paris.', price: 15, rating: 5 },
+        { attraction_id: 3,tickets_available: 10,phone:'sdfsfsda',name: 'Colosseum',city:'Hengelo',description: 'A historical amphitheater in Rome.', price: 20, rating: 4 },
+        { attraction_id: 4,tickets_available: 37,phone:'fasf1231242', name: 'Taj Mahal',city:'Enschede', description: 'A historic white marble mausoleum in Agra.', price: 35, rating: 5 },
+        { attraction_id: 5,tickets_available: 220,phone:'1533464645',name: 'London Eye',city:'Enschede', description: 'A giant Ferris wheel on the South Bank of the River Thames in London.', price: 50, rating: 4 }
     ];
 
     React.useEffect(() => {
-        // Assuming attractionsData is available within this component scope,
-        // if not, it should be passed as a prop or fetched from an API
-        const attraction = attractionsData.find(item => item.id === attractionId);
-
+        // Use the correct property name: 'attraction_id'
+        const attraction = attractionsData.find(item => item.attraction_id === attractionId);
+    
         if (attraction) {
             setAttractionName(attraction.name);
             setRating(attraction.rating);
@@ -40,12 +41,12 @@ export function AttractionDetail() {
             setPrice(attraction.price);
             setCity(attraction.city);
             setAddress(attraction.address);
-            setPhoneNumber(attraction.phone) 
-
+            setPhoneNumber(attraction.phone);
+            setTickectAvailable(attraction.tickets_available);
         } else {
             console.log("No attraction found with the given ID");
         }
-
+    
     }, [attractionId]);
 
     // React.useEffect(()=>{
@@ -56,10 +57,11 @@ export function AttractionDetail() {
     //         setAttractionName(response.data.data.name)
     //         setAddress(response.data.data.address)
     //         setAttractionDescription(response.data.data.description)
-    //         setPhoneNumber(response.data.data.phone)   
+    //         setPhoneNumber(response.data.data.phone_number)   
     //         setRating(response.data.data.rating)
     //         setPrice(response.data.data.price)
     //         setCity(response.data.data.city)
+    //         setTickectAvailable(response.data.data.tickets_available)
     //     }
     //     else{
     //       //code为-1
@@ -74,11 +76,12 @@ export function AttractionDetail() {
     const handleBooking = async () => {
         // Construct booking data for the attraction visit
         const bookingData = {
-            orderId: null,
-            userId: userId,
-            attractionId: attractionId,
-            visitDate: visitDate, // The date the user plans to visit the attraction
-            price: price, // The price of the attraction visit
+            order_id: null,
+            user_id: userId,
+            price: price,
+            order_status:1,
+            attraction_id: attractionId,
+            visit_date: visitDate, // The date the user plans to visit the attraction
         };
 
         console.log('Booking data:', bookingData);
@@ -94,14 +97,15 @@ export function AttractionDetail() {
         }
         });
 
-        // //Uncomment the following to implement booking logic using an API call
+        //Uncomment the following to implement booking logic using an API call
         // try {
         //     const response = await axios.post('http://your-backend-url/api/attraction-visits', bookingData);
         //     // Handle response data, possibly navigating to a confirmation page
         //     navigate('/attraction-confirm', { state: {
-        //          orderId: response.data.data.id,
+        //          orderId: response.data.data.order_id,
         //          userId: userId,
         //          attractionId: attractionId,
+        //          attractionName: AttractionName,
         //          visitDate: visitDate, // The date the user plans to visit the attraction
         //          price: price, // The price of the attraction visit
         //         } });
@@ -122,6 +126,7 @@ export function AttractionDetail() {
         <p className="attraction-phone">Phone: {PhoneNumber}</p>
         <p className="attraction-city">City: {city}</p>
         <p className="attraction-visit-date">Visit Date: {visitDate}</p>
+        <p className="attraction-price">Ticket Available: {ticket_available}</p>
         <p className="attraction-price">Price: €{price}</p>
     </div>
     <div className="attraction-visit-button-container">

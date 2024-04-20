@@ -16,23 +16,25 @@ export function AttractionConfirmation() {
       // State hooks for form inputs
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
+    const [people, setPeople] = React.useState('');
 
     // Function to handle booking confirmation
   const handleConfirmBooking = async () => {
     // Construct the order data
     const orderData = {
-      orderId: orderId, // This would be assigned by the backend when creating the order
+      //order_id: orderId, // This would be assigned by the backend when creating the order
       // userId: userId,
-      orderStatus: 1, // Assuming 1 is the status code for "reserved"
+      order_status: 2, // Assuming 1 is the status code for "reserved"
       name: name,
       email: email,
+      visitors_number: people,
     };
     navigate('/order-confirmation', { state: { orderId: orderId, name: name, email: email } });
     // try {
     //   // Send a POST request to your backend endpoint to create the booking
     //   const response = await axios.patch('http://your-backend-url/api/orders/${orderId}', orderData);
     //   // Redirect to a confirmation page, passing along the orderId from the response
-    //   navigate('/order-confirmation', { state: { orderId: response.data.orderId } });
+    //   navigate('/order-confirmation', { state: { orderId: response.data.data.order_id } });
     // } catch (error) {
     //   console.error('Error confirming booking:', error);
     // }
@@ -61,6 +63,14 @@ export function AttractionConfirmation() {
                         placeholder="Your Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div className="input-group">
+                    <input
+                        type="people"
+                        placeholder="Number of people"
+                        value={people}
+                        onChange={(e) => setPeople(e.target.value)}
                     />
                 </div>
                 <div className="button-container">
