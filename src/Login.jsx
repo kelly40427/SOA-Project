@@ -15,7 +15,7 @@ export function Login() {
       event.preventDefault();//防止表单默认行为
       console.log("user login");
       console.log("inside the handleLogin:",username,password,role);
-      axios.get(`http://localhost:8080/user/login?username=${username}&password=${password}&role=${role}`).
+      axios.get(`http://localhost:8080/auth/login?username=${username}&password=${password}&role=${role}`).
       then((response) => {
         console.log(response.data);
         if (response.data.code === 0) {
