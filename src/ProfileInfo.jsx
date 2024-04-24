@@ -9,9 +9,12 @@ export function ProfileInfo() {
   // const [email, setEmail] =React.useState('')
   // const [role, setRole] =React.useState('')
 
-  const username='Kelly';
-  const email='dsfsesegsegsg.com';
-  const role ='user'
+  // const username='Kelly';
+  // const email='dsfsesegsegsg.com';
+  // const role ='user'
+  const [username, setUserName] = React.useState("");
+  const [email, setEmail] = React.useState(""); 
+  const [role, setRole]=React.useState("");
 
   //获取登录页面传来的userId
   const location = useLocation();
@@ -20,23 +23,18 @@ export function ProfileInfo() {
 
   const navigate = useNavigate();
 
-  // React.useEffect(()=>{
-  //   axios.get(`http://localhost:8080/user/profile?userId=${userId}`).
-  //   then((response)=> {
-  //     console.log(response.data);
-  //     if(response.data.code==0){
-  //       setUserName(response.data.data.username)
-  //       setEmail(response.data.data.email)
-  //       setRole(response.data.data.role)
-  //     }
-  //     else{
-  //       console.log('No information found')
-  //     }
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //   });
-  // }, [userId]);
+  React.useEffect(()=>{
+    axios.get(`http://localhost:8080/auth?id=${userId}`).
+    then((response)=> {
+      console.log(response.data);
+      setUserName(response.data.username)
+      setEmail(response.data.email)
+      setRole(response.data.role)
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }, [userId]);
 
   return (
     <div className="profile-container">
