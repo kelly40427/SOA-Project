@@ -76,17 +76,23 @@ const handleSearch = () => {
 };
 
 const handleViewAttraction = (attraction) => {
+  const visitDate = choosedDate.toISOString().split('T')[0];
+  console.log("Original Chosen Date:", choosedDate); // 输出原始日期
+  console.log("Visit Date after conversion:", visitDate); // 输出转换后的日期
+
     // Log the data you're sending
     const stateToSend ={
       userId: userId,
       attractionId: attraction.attraction_id,
       attractionName: attraction.name,
-      visitDate: choosedDate.toISOString().split('T')[0],
+      visitDate: visitDate,
       price: attraction.price,
       description: attraction.description,
       ticketsAvailable: attraction.tickets_available, // Make sure this attribute exists
     };
+    console.log("Navigating with state:", stateToSend)
     navigate(`/attraction-detail`, { state: stateToSend });
+    
   // Prepare data to send or use in navigation
   // const dataToSend = {
   //     userId: userId,
@@ -114,7 +120,10 @@ const handleViewAttraction = (attraction) => {
     <div className="search-and-filters">
         <DatePicker
             selected={choosedDate}
-            onChange={(date) => setChoosedDate(date)}
+            onChange={(date) => {
+              console.log("Chosen Date:", date);
+              setChoosedDate(date)
+            }}
             dateFormat="yyyy/MM/dd"
         />
         <input

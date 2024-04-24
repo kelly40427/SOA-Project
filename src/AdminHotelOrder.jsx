@@ -10,14 +10,15 @@ function EditableRow({ order, editFormData, handleEditChange, handleEditSubmit, 
         <input type="number" required name="user_id" value={editFormData.user_id} onChange={handleEditChange} readOnly />
         </td>
         <td>
+        <input type="number" required name="room_id" value={editFormData.room_id} onChange={handleEditChange} />
+        </td>
+        <td>
         <input type="date" required name="checkIn" value={editFormData.check_in} onChange={handleEditChange}/>
         </td>
         <td>
           <input type="date" required name="checkOut" value={editFormData.check_out} onChange={handleEditChange}/>
         </td>
-        <td>
-      <input type="number" required name="room_id" value={editFormData.room_id} onChange={handleEditChange} />
-        </td>
+
         <td>
           <select name="status" value={editFormData.order_status} onChange={handleEditChange}>
             <option value="pending">1</option>
@@ -41,9 +42,9 @@ function EditableRow({ order, editFormData, handleEditChange, handleEditSubmit, 
       <tr>
         <td>{order.order_id}</td>
         <td>{order.user_id}</td>
+        <td>{order.room_id}</td>
         <td>{order.check_in}</td>
         <td>{order.check_out}</td>
-        <td>{order.room_id}</td>
         <td>{order.order_status}</td>
         <td>{order.price}</td>
         {/* Include other fields similarly */}

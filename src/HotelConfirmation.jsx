@@ -42,7 +42,7 @@ function HotelConfirmation() {
     //   // Send a POST request to your backend endpoint to create the booking
     //   const response = await axios.patch('http://your-backend-url/api/orders/${orderId}', orderData);
     //   // Redirect to a confirmation page, passing along the orderId from the response
-    //   navigate('/order-confirmation', { state: { orderId: response.data.data.order_id } });
+    //   navigate('/order-confirmation', { state: { orderId: response.data.data.order_id, name:name, email:email } });
     // } catch (error) {
     //   console.error('Error confirming booking:', error);
     // }

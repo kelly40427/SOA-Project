@@ -44,27 +44,49 @@ export function HotelDetail() {
         { room_type_id: 6, room_type_name: 'deluxe room' },
       ];
       
-      const mockRooms = [
-        {
-          room_id: 1,
-          hotel_id: 1,
-          room_type: 1,
-          price: 90,
-          room_number: 'B304',
-          description: 'This is a single room of Hotel A.',
-          room_status: 1
-        },
-        {
-          room_id: 2,
-          hotel_id: 1,
-          room_type: 4,
-          price: 300,
-          room_number: 'C102',
-          description: 'This is a family room of Hotel A.',
-          room_status: 1
-        },
-        // Add more rooms if necessary
-      ];
+      const mockHotelRooms = {
+        1: [ // Rooms for Hotel ID 1
+          {
+            room_id: 1,
+            hotel_id: 1,
+            room_type: 1, // Single room
+            price: 90,
+            room_number: 'B304',
+            description: 'This is a single room in Hengelo Tomas Tree Star Hotel.',
+            room_status: 1 // Indicates if the room is available or booked
+          },
+          {
+            room_id: 2,
+            hotel_id: 1,
+            room_type: 4, // Family room
+            price: 300,
+            room_number: 'C102',
+            description: 'This is a family room in Hengelo Tomas Tree Star Hotel.',
+            room_status: 1
+          },
+        ],
+        2: [ // Rooms for Hotel ID 2
+          {
+            room_id: 5,
+            hotel_id: 2,
+            room_type: 6, // Deluxe room
+            price: 600,
+            room_number: 'D102',
+            description: 'Deluxe Room in Hengelo Sousa Hotel.',
+            room_status: 1
+          },
+          {
+            room_id: 6,
+            hotel_id: 2,
+            room_type: 4, // Family room
+            price: 600,
+            room_number: 'D301',
+            description: 'This is a family room in Hengelo Sousa Hotel.',
+            room_status: 1
+          },
+        ],
+        // Additional hotel rooms can be added here
+      };
 
       // Inside your React component's useEffect hook:
     React.useEffect(() => {
@@ -75,16 +97,23 @@ export function HotelDetail() {
         // Set the state for room types
         setRoomTypes(mockRoomTypes);
     
-        // Simulate fetching rooms for a specific hotel
-        const hotelRooms = mockRooms.filter(room => room.hotel_id === hotelId);
+        // Ensure the correct hotel ID is used to get the room data
+        const hotelRooms = mockHotelRooms[hotelId] || []; // Default to an empty array if no rooms are found for the hotel
         setRooms(hotelRooms);
-    
-        // If you have a state for the selected hotel's details
+
+        // Find the selected hotel details
         const selectedHotelDetails = mockHotels.find(hotel => hotel.hotel_id === hotelId);
         setHotelDetails(selectedHotelDetails || {});
     
     }, [hotelId]);
 
+    const getRoomWithMinPrice = (rooms) => {
+      if (!rooms || rooms.length === 0) return null;
+      return rooms.reduce((minRoom, currentRoom) => (currentRoom.price < minRoom.price ? currentRoom : minRoom));
+    };
+  
+    const roomWithMinPrice = getRoomWithMinPrice(rooms);
+  
     // React.useEffect(()=>{
     //     axios.get(`http://localhost:8080/hotel/info?hotelId=${hotelId}`).
     //     then((response) => {
@@ -194,35 +223,33 @@ export function HotelDetail() {
 
 
     const getRoomTypeName = (roomTypeId) => {
-    const roomType = roomTypes.find(type => type.room_type_id === roomTypeId);
-    return roomType ? roomType.room_type_name : 'Unknown';
+      const roomType = roomTypes.find(type => type.room_type_id === roomTypeId);
+      return roomType ? roomType.room_type_name : 'Unknown';
     };
-  return (
-    <div className="hotel-detail-container">
-    <div className="hotel-detail-header">
-        <h1 className="hotel-name">{hotelDetails.name}</h1>
-        <p className="hotel-rating">{hotelDetails.rating}</p>
-    </div>
-    <div className="hotel-info">
-        <p className="hotel-address">Address: {hotelDetails.address}</p>
-        <p className="hotel-description">{hotelDetails.description}</p>
-        <p className="hotel-phone">Phone: {hotelDetails.phone_number}</p>
-        {/* Display check-in and check-out dates */}
-    </div>
-    <div className="rooms-list">
-        {rooms.map(room => (
-            <div key={room.room_id} className="room-item">
-                {/* Display room details */}
-                <p>Room Number: {room.room_number}</p>
-                <p>Room Type: {getRoomTypeName(room.room_type)}</p>
-                <p>Price: €{room.price}</p>
-                <p>Description: {room.description}</p>
-                <button onClick={() => handleBooking(room.room_id)}>Book This Room</button>
-            </div>
-        ))}
-    </div>
-</div>
-  )
+    return (
+      <div className="hotel-detail-container">
+        <div className="hotel-detail-header">
+          <h1 className="hotel-name">{hotelDetails.name}</h1>
+          <p className="hotel-rating">{hotelDetails.rating}</p>
+        </div>
+        <div className="hotel-info">
+          <p className="hotel-address">Address: {hotelDetails.address}</p>
+          <p className="hotel-description">{hotelDetails.description}</p>
+          <p className="hotel-phone">Phone: {hotelDetails.phone_number}</p>
+        </div>
+        <div className="room-item">
+          {roomWithMinPrice && (
+            <>
+              <p>Room Number: {roomWithMinPrice.room_number}</p>
+              <p>Room Type: {getRoomTypeName(roomWithMinPrice.room_type)}</p>
+              <p>Price: €{roomWithMinPrice.price}</p>
+              <p>Description: {roomWithMinPrice.description}</p>
+              <button onClick={() => handleBooking(roomWithMinPrice.room_id)}>Book This Room</button>
+            </>
+          )}
+        </div>
+      </div>
+    );
 }
 
 export default HotelDetail

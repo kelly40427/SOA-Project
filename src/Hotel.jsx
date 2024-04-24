@@ -114,6 +114,7 @@ React.useEffect(() => {
 
   setHotels(hotelsWithMinPrice);
   setFilteredHotels(hotelsWithMinPrice);
+  setRoomTypes(mockRoomTypes);
 }, []);
 
   // React.useEffect(()=>{
@@ -197,6 +198,7 @@ React.useEffect(() => {
 
 
   const handleViewRooms = (hotelId) =>{
+    console.log("Navigating to hotel detail with ID:", hotelId);
     const lengthOfStay = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
     // const dataToSend = {
     //   user_id: userId,
